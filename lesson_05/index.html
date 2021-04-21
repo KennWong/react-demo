@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>使用jsx创建虚拟DOM</title>
+</head>
+<body>
+  <!-- 准备好一个容器 -->
+  <div id="root"></div>
+  <!-- 加载 React。-->
+  <!-- 注意: 部署时，将 "development.js" 替换为 "production.min.js"。-->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  
+  <script type="text/babel">
+    function Demo() {
+      return <h2>我是用函数定义的组件(适用于【简组件】的定义)</h2>
+    }
+
+    ReactDOM.render(<Demo/>, document.getElementById('root'))
+  </script>
+</body>
+</html>
