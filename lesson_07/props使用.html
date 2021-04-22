@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>props 使用</title>
+</head>
+<body>
+  <!-- 准备好一个容器 -->
+  <div id="view1"></div>
+  <div id="view2"></div>
+  <!-- 加载 React。-->
+  <!-- 注意: 部署时，将 "development.js" 替换为 "production.min.js"。-->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    // 1. 创建组件
+    class Person extends React.Component {
+      render() {
+        console.log(this)
+        const { name, gender, age } = this.props
+        return (
+          <ul>
+            <li>姓名：{name}</li>
+            <li>性别：{gender}</li>
+            <li>年龄：{age}</li>  
+          </ul>
+        )
+      }
+    }
+
+    ReactDOM.render(<Person name='Mike' gender='Male' age='18' />, document.getElementById('view1'))
+
+    
+    const p = {name:'Liu', gender:'male', age:'58'}
+    //ReactDOM.render(<Person name={p.name} gender={p.gender} age={p.age} />, document.getElementById('view2'))
+    // ... 展开运算符, 效果同上
+    ReactDOM.render(<Person {...p} />, document.getElementById('view2'))
+  </script>
+</body>
+</html>
