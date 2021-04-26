@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>字符串类型的refs</title>
+</head>
+<body>
+  <!-- 准备好一个容器 -->
+  <div id="root"></div>
+  <!-- 加载 React。-->
+  <!-- 注意: 部署时，将 "development.js" 替换为 "production.min.js"。-->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Demo extends React.Component {
+      showData = () => {
+        const { input1 } = this.refs //input1为真实DOm
+        alert(input1.value)
+      }
+      showData2 = () => {
+        const { input2 } = this.refs //input1为真实DOm
+        alert(input2.value)
+      }
+      render() {
+        return (
+          <div>
+            <input ref="input1" type="text" placeholder="点击按钮提示数据" />&nbsp;
+            <button ref="button1" onClick={this.showData}>点我提示左侧的数据</button>&nbsp;
+            <input ref="input2" onBlur={this.showData2} type="text" placeholder="失去焦点提示数据" />
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Demo />, document.querySelector('#root'))
+  </script>
+</body>
+</html>
