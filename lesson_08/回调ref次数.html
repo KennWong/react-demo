@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
-  <title>字符串类型的refs</title>
+  <title>回调ref次数</title>
 </head>
 <body>
   <!-- 准备好一个容器 -->
@@ -14,20 +14,33 @@
 
   <script type="text/babel">
     class Demo extends React.Component {
+      
+      state = {isHot: true}
+
+      changeWeather = () => {
+        const isHot = this.state.isHot
+        this.setState({isHot:!isHot})
+      }
+
+      show = (c) => {
+        this.input1 = c
+        console.log('@', c)
+      }
+
       showData = () => {
-        const { input1 } = this.refs //input1为真实DOM
+        const { input1 } = this
         alert(input1.value)
       }
-      showData2 = () => {
-        const { input2 } = this.refs //input1为真实DOM
-        alert(input2.value)
-      }
+
       render() {
+        const {isHot} = this.state
         return (
           <div>
-            <input ref="input1" type="text" placeholder="点击按钮提示数据" />&nbsp;
-            <button ref="button1" onClick={this.showData}>点我提示左侧的数据</button>&nbsp;
-            <input ref="input2" onBlur={this.showData2} type="text" placeholder="失去焦点提示数据" />
+            <h2>今天天气很{isHot ? "炎热" : "凉爽"}</h2>
+            <input ref={ this.show } type="text" placeholder="点击按钮提示数据" />
+            <br/><br/>
+            <button onClick={this.showData}>点我提示左侧的数据</button> &nbsp;
+            <button onClick={this.changeWeather}>点我切换天气</button>
           </div>
         )
       }
